@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { sample_foods } from "./data";
+import { sample_foods, sample_tags } from "./data";
 
 const app = express();
 
@@ -20,6 +20,10 @@ app.get("/api/foods/search/:searchTerm", (req, res) => {
     const searchTerm = req.params.searchTerm;
     const foods = sample_foods.filter(food => food.name.toLowerCase().includes(searchTerm.toLowerCase()));
     res.send(foods);
+})
+
+app.get("/api/foods/tags", (req, res) => {
+    res.send(sample_tags);
 })
 
 //definisanje porta
