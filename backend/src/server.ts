@@ -26,6 +26,12 @@ app.get("/api/foods/tags", (req, res) => {
     res.send(sample_tags);
 })
 
+app.get("/api/foods/tag/:tagName", (req, res) => {
+    const tagName = req.params.tagName;
+    const foods = sample_foods.filter(food => food.tags?.includes(tagName));
+    res.send(foods);
+})
+
 //definisanje porta
 const port = 5000;
 app.listen(port, () => {
