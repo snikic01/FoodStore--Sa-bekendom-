@@ -32,6 +32,12 @@ app.get("/api/foods/tag/:tagName", (req, res) => {
     res.send(foods);
 })
 
+app.get("/api/foods/:foodId", (req, res) => {
+    const foodId = req.params.foodId;
+    const food = sample_foods.find(food => food.id == foodId);
+    res.send(food);
+})
+
 //definisanje porta
 const port = 5000;
 app.listen(port, () => {
