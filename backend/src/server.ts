@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import { sample_foods } from "./data";
 
 const app = express();
 
@@ -12,8 +13,14 @@ app.use(cors({
 //definisanje get apija
 
 app.get("/api/foods", (req, res) => {
-    res.send("Hello from the server!");
+    res.send(sample_foods);
 });
+
+app.get("/api/foods/search/:searchTerm", (req, res) => {
+    const searchTerm = req.params.searchTerm;
+    const foods = sample_foods.filter(food => food.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    res.send(foods);
+})
 
 //definisanje porta
 const port = 5000;
